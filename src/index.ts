@@ -53,7 +53,8 @@ export default function extractMetadataBlocks (fileContent: string, stripMetadat
     }
 
     // Check that we found a matching number of Beginning and Ending lines
-    // We should actually check that a yaml block doesn't contain arbitrary
+    // We should actually check that a yaml block contains YAML, and not some arbitrary content,
+    // but that's hard and trying to parse bad YAML will throw an error anyway.
     if (yamlBeginning.length != yamlEnd.length) {
       throw new Error (`Metadata Block beginning on line ${yamlBeginning[yamlBeginning.length - 1] + 1} does not end.`)
     }
